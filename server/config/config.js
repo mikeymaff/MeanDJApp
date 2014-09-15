@@ -9,7 +9,7 @@ module.exports = {
 	},
 	production: {
 		rootPath: rootPath,
-		db: 'mongodb://mikeymaff:multivision@ds053158.mongolab.com:53158/multivision',
+		db: 'mongodb://mikeymaff:meandjapp@ds035250.mongolab.com:35250/meandjapp',
 		port: process.env.PORT || 80
 	}
 }
