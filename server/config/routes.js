@@ -1,6 +1,6 @@
 var auth 		= require('./auth'),
 	users 		= require('../controllers/users'),
-	courses 	= require('../controllers/courses'),	
+	parties 	= require('../controllers/parties'),	
 	mongoose	= require('mongoose'),
 	User 		= mongoose.model('User');
 
@@ -10,8 +10,8 @@ module.exports = function(app) {
 	app.post('/api/users', users.createUser);
 	app.put('/api/users', users.updateUser);
 
-	app.get('/api/courses', courses.getCourses);
-	app.get('/api/courses/:id', courses.getCourseById);
+	app.get('/api/parties', parties.getParties);
+	app.get('/api/parties/:id', parties.getPartyById);
 
 	app.get('/partials/*', function(req, res) {
 		res.render('../../public/app/' + req.params[0])

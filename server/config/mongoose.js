@@ -1,13 +1,13 @@
 var mongoose	= require('mongoose'),
 	userModel	= require('../models/User'),
-	courseModel	= require('../models/Course');
+	partyModel	= require('../models/Party');
 
 module.exports = function(config) {
 	mongoose.connect(config.db);
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error...'));
 	db.once('open', function callback() {
-		console.log('multivision db opened');
+		console.log('meandjapp db opened');
 	});
 	// var messageSchema = mongoose.Schema({message: String});
 	// var Message = mongoose.model('Message', messageSchema);
@@ -17,5 +17,5 @@ module.exports = function(config) {
 	// });
 
 	userModel.createDefaultUsers();
-	courseModel.createDefaultCourses();
+	partyModel.createDefaultParties();
 }

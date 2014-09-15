@@ -11,7 +11,7 @@
 				th Title
 				th Publish Date
 			tbody
-				tr(ng-repeat="course in courses | filter:searchText | orderBy:sortOrder")
+				tr(ng-repeat="party in parties | filter:searchText | orderBy:sortOrder")
 					td 
-						a(href="/courses/{{course._id}}") {{course.title}}
-					td {{course.published | date}}
+						a(href="/parties/{{party._id}}") {{party.name}}
+					td {{party.published | date}}

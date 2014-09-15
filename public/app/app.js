@@ -22,11 +22,11 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 		.when('/profile', {templateUrl: '/partials/account/profile', 
 			controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
 		})
-		.when('/courses', {templateUrl: '/partials/courses/course-list', 
-			controller: 'mvCourseListCtrl'
+		.when('/parties', {templateUrl: '/partials/parties/party-list', 
+			controller: 'mvPartyListCtrl'
 		})
-		.when('/courses/:id', {templateUrl: '/partials/courses/course-details', 
-			controller: 'mvCourseDetailCtrl'
+		.when('/parties/:id', {templateUrl: '/partials/parties/party-details', 
+			controller: 'mvPartyDetailCtrl'
 		});
 });
 

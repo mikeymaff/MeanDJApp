@@ -1,0 +1,6 @@
+.panel.panel-primary
+	.panel-heading.text-center Parties
+	.panel-body 
+		.row(ng-repeat="party in parties")
+			.col-md-12 
+				a(href="/parties/{{party._id}}") {{party.name}} at {{party.location}} featuring {{party.dj}}

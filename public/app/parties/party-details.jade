@@ -1,0 +1,12 @@
+.container
+	h1 {{party.name}} at {{party.location}} featuring {{party.dj}}
+		.row
+			.col-md-12
+				//h3(ng-show="course.featured") Featured
+				h3 Published on {{party.published | date}}
+		.row
+			.col-md-12
+				.panel.panel-primary
+					.panel-heading Songs
+					.panel-body
+						div(ng-repeat="song in party.songs") {{song}}
