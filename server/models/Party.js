@@ -1,5 +1,8 @@
 var mongoose = require('mongoose'),
-    Schema   = mongoose.Schema;
+    Schema   = mongoose.Schema,
+    SongSchema = require('../models/Song')
+    //Song = require('mongoose').model('Song');
+
 
 
 var partySchema = mongoose.Schema({
@@ -10,20 +13,8 @@ var partySchema = mongoose.Schema({
 	songs:[{ type: Schema.Types.ObjectId, ref: 'Song' }]
 });
 
-var songSchema = mongoose.Schema({
-	//_party: Number,
-	name: {type:String, required:'{PATH} is required!'},
-	artist: {type:String, required:'{PATH} is required!'},
-	_parties: [
-		{
-			partyId:{type:Schema.Types.ObjectId, ref: 'Party'},
-			voteCount:Number
-		}
-	]
-});
-
 var Party = mongoose.model('Party', partySchema);
-var Song = mongoose.model('Song', songSchema);
+var Song = SongSchema.getSongModel();
 
 
 function createDefaultParties() {

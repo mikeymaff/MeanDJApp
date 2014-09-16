@@ -11,7 +11,9 @@ module.exports = function(app) {
 	app.put('/api/users', users.updateUser);
 
 	app.get('/api/parties', parties.getParties);
+	app.post('/api/parties', parties.createParty);
 	app.get('/api/parties/:id', parties.getPartyById);
+	app.get('/api/parties/:id/songs', parties.getPartySongsById);
 
 	app.get('/partials/*', function(req, res) {
 		res.render('../../public/app/' + req.params[0])
