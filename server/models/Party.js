@@ -1,20 +1,74 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema   = mongoose.Schema;
+
 
 var partySchema = mongoose.Schema({
+	//_id: Number,
 	name: {type:String, required:'{PATH} is required!'},
 	dj: {type:String, required:'{PATH} is required!'},
 	location: {type:String, required:'{PATH} is required!'},
-	published: {type:Date, required:'{PATH} is required!'},
-	songs:[String]
+	published: {type:Date, default:Date.now, required:'{PATH} is required!'},
+	songs:[{ type: Schema.Types.ObjectId, ref: 'Song' }]
 });
+
+var songSchema = mongoose.Schema({
+	//_party: Number,
+	name: {type:String, required:'{PATH} is required!'},
+	artist: {type:String, required:'{PATH} is required!'},
+	voteCount: {type:Number},
+});
+
 var Party = mongoose.model('Party', partySchema);
+var Song = mongoose.model('Song', songSchema);
+
 
 function createDefaultParties() {
 	Party.find({}).exec(function(err, collection) {
 		if(collection.length === 0) {
-			Party.create({name: 'New Years Eve', dj: 'Dada Life', location: 'Pacha', published: new Date('10/5/2013'), songs:["Gecko - Oliver Heldens", "You Should Know - Jack Beats", "Problem - Arriana Grande"]});
-			Party.create({name: 'Electric Zoo', dj: 'Steve Aoki', location: 'Randalls Island', published: new Date('9/1/2013'), songs:["Gecko - Oliver Heldens", "You Should Know - Jack Beats", "Problem - Arriana Grande"]});
-			Party.create({name: 'Boys and Girls Club', dj: 'Wolfgang Gartner', location: 'Webster Hall', published: new Date('12/5/2013'), songs:["Gecko - Oliver Heldens", "You Should Know - Jack Beats", "Problem - Arriana Grande"]});
+			Party.create({name: 'New Years Eve', dj: 'Dada Life', location: 'Pacha'}, function(err, myParty) {
+				var songs = [
+					new Song({name:"Gecko", artist:"Oliver Heldens", voteCount:1}),
+					new Song({name:"You Should Know", artist:"Jack Beats", voteCount:1}),
+					new Song({name:"Problem", artist:"Arriana Grande", voteCount:1})
+				]
+
+				for(i=0; i<songs.length; i++) {
+					songs[i].save();
+					myParty.songs.push(songs[i])
+				}
+
+				myParty.save();
+			});
+
+			Party.create({name: 'Electric Zoo', dj: 'Steve Aoki', location: 'Randalls Island'}, function(err, myParty) {
+				var songs = [
+					new Song({name:"Atmosphere", artist:"Kaskade", voteCount:1}),
+					new Song({name:"Thinking About You", artist:"Calvin Harris", voteCount:1})
+				]
+
+				for(i=0; i<songs.length; i++) {
+					songs[i].save();
+					myParty.songs.push(songs[i])
+				}
+
+				myParty.save();
+			});
+
+			Party.create({name: 'Boys and Girls Club', dj: 'Wolfgang Gartner', location: 'Webster Hall'}, function(err, myParty) {
+				var songs = [
+					new Song({name:"Rift", artist:"Dirty South", voteCount:1}),
+					new Song({name:"Codec", artist:"Zedd", voteCount:1}),
+					new Song({name:"I Know The Truth", artist:"Pretty Lights", voteCount:1}),
+					new Song({name:"Latch", artist:"Disclosure", voteCount:1})
+				]
+
+				for(i=0; i<songs.length; i++) {
+					songs[i].save();
+					myParty.songs.push(songs[i])
+				}
+
+				myParty.save();
+			});
 		}
 	})
 }
