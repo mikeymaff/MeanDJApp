@@ -1,10 +1,22 @@
 .container.top-padding-med
-	.pull-right
-		form.form-inline
-			.form-group
-				input.form-control(ng-model="searchText", placeholder="Filter")
-			.form-group.margin-left-med
-				select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+	.row
+		.col-md-12
+			.pull-left
+				form.form-inline(name="createAPartyForm" ng-controller="mvCreatePartyCtrl as createParty" ng-submit="createAPartyForm.$valid && createParty.addParty()" novalidate)
+					.form-group
+						span Create A Party
+						input.form-control.margin-left-med(ng-model="createParty.party.partyName", placeholder="Party Name" required)
+						input.form-control.margin-left-med(ng-model="createParty.party.partyLocation", placeholder="Party Location" required)
+						input.form-control.margin-left-med(ng-model="createParty.party.partyDJ", placeholder="DJ" required)
+						input.form-control.margin-left-med(type="submit")
+	.row
+		.col-md-12
+			.pull-right
+				form.form-inline
+					.form-group
+						input.form-control(ng-model="searchText", placeholder="Filter")
+					.form-group.margin-left-med
+						select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
 	table.table.table-hover.table-striped.table-condensed
 		thead
 			tr
@@ -13,5 +25,5 @@
 			tbody
 				tr(ng-repeat="party in parties | filter:searchText | orderBy:sortOrder")
 					td 
-						a(href="/parties/{{party._id}}") {{party.name}}
+						a(href="/parties/{{party._id}}") {{party.name}} at {{party.location}} featuring {{party.dj}}
 					td {{party.published | date}}

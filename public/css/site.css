@@ -30,6 +30,12 @@ footer p {
 .panel-body {
   font-size: 20px;
 }
+.ng-invalid.ng-dirty {
+  border-color: #fa787e;
+}
+.ng-valid.ng-dirty {
+  border-color: #78fa89;
+}
 .toast-top-right {
   top: 70px;
 }
