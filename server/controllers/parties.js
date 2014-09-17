@@ -9,6 +9,7 @@ exports.getParties = function(req, res) {
 
 exports.createParty = function(req, res, next) {
 	var partyData = req.body;
+	//console.log('create party api called')
 	//partyData.username = userData.username.toLowerCase();
 	Party.create(partyData, function(err, party) {
 		if(err) {

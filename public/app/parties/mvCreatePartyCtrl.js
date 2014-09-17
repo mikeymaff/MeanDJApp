@@ -1,18 +1,23 @@
-angular.module('app').controller('mvCreatePartyCtrl', function($scope, mvNotifier, $location, mvCreateParty) {
-	this.party = {};
+angular.module('app').controller('mvCreatePartyCtrl', function($http, mvParty, $q, mvUser, $scope, mvNotifier, $location) {
+	
 
-	this.addParty = function() {
-		//send this.party to api
-		var partyData = {
-			name     : this.party.partyName,
-			location : this.party.partyLocation,
-			dj       : this.party.partyDJ
+	$scope.createParty = function() {
+		var newPartyData = {
+			name     : $scope.name,
+			location : $scope.location,
+			dj       : $scope.dj
 		}
-		//console.log(this.party)
-		mvCreateParty.createParty(partyData).then(function() {
-			mvNotifier.notify('New Party created!');
-		}, function(reason) {
-			mvNotifier.error(reason);
-		})
+
+		var newParty = new mvParty(newPartyData);
+		var dfd = $q.defer();
+		console.log(newParty)
+
+		newParty.$save().then(function() {
+			dfd.resolve();
+			console.log("saved!")
+		}, function(response) {
+			dfd.reject(response.data.reason);
+			console.log("rejected!")
+		});
 	}
 });
