@@ -14,7 +14,8 @@ angular.module('app').controller('mvCreatePartyCtrl', function($http, mvParty, $
 
 		newParty.$save().then(function() {
 			dfd.resolve();
-			console.log("saved!")
+			//console.log(newParty._id)
+			$location.path('/parties/' + newParty._id)
 		}, function(response) {
 			dfd.reject(response.data.reason);
 			console.log("rejected!")
