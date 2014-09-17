@@ -22,6 +22,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 		.when('/profile', {templateUrl: '/partials/account/profile', 
 			controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
 		})
+		.when('/parties', {templateUrl: '/partials/parties/create-party', 
+			controller: 'mvCreatePartyCtrl'
+		})
 		.when('/parties', {templateUrl: '/partials/parties/party-list', 
 			controller: 'mvPartyListCtrl'
 		})

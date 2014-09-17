@@ -1,0 +1,10 @@
+.row
+	.col-md-12
+		.pull-left
+			form.form-inline(name="createAPartyForm" ng-controller="mvCreatePartyCtrl" novalidate)
+				.form-group
+					span Create A Party
+					input.form-control.margin-left-med(ng-model="name", placeholder="Party Name" required)
+					input.form-control.margin-left-med(ng-model="location", placeholder="Party Location" required)
+					input.form-control.margin-left-med(ng-model="dj", placeholder="DJ" required)
+					button.btn.btn-primary.margin-left-med(ng-click="createParty()", ng-disabled="createAPartyForm.$invalid") Submit
