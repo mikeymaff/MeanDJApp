@@ -10,7 +10,7 @@ angular.module('app').controller('mvCreatePartyCtrl', function($http, mvParty, $
 
 		var newParty = new mvParty(newPartyData);
 		var dfd = $q.defer();
-		console.log(newParty)
+		//console.log(newParty)
 
 		newParty.$save().then(function() {
 			dfd.resolve();

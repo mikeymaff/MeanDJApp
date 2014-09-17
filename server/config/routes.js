@@ -1,6 +1,7 @@
 var auth 		= require('./auth'),
 	users 		= require('../controllers/users'),
 	parties 	= require('../controllers/parties'),	
+	songs       = require('../controllers/songs'),
 	mongoose	= require('mongoose'),
 	User 		= mongoose.model('User');
 
@@ -13,6 +14,7 @@ module.exports = function(app) {
 	app.get('/api/parties', parties.getParties);
 	app.post('/api/parties', parties.createParty);
 	app.get('/api/parties/:id', parties.getPartyById);
+	app.post('/api/parties/:id/songs', songs.addSongToParty);
 	app.get('/api/parties/:id/songs', parties.getPartySongsById);
 
 	app.get('/partials/*', function(req, res) {

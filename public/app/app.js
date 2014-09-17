@@ -30,7 +30,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
 		})
 		.when('/parties/:id', {templateUrl: '/partials/parties/party-details', 
 			controller: 'mvPartyDetailCtrl'
-		});
+		})
 });
 
 angular.module('app').run(function($rootScope, $location) {

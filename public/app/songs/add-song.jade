@@ -1,0 +1,9 @@
+.row.margin-bottom-med
+	.col-md-12
+		.pull-left
+			form.form-inline(name="addSongForm" ng-controller="mvAddSongCtrl" novalidate)
+				.form-group
+					span Add a Song
+					input.form-control.margin-left-med(ng-model="name", placeholder="Song Name" required)
+					input.form-control.margin-left-med(ng-model="artist", placeholder="Song Artist" required)
+					button.btn.btn-primary.margin-left-med(ng-click="addSong()", ng-disabled="addSongForm.$invalid") Submit
