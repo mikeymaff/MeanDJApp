@@ -31,7 +31,7 @@ exports.getPartyById = function(req, res) {
 
 exports.getPartySongsById = function(req, res) {
 	Party.findOne({_id:req.params.id}).exec(function(err, party) {
-		songs.getSongsById({arrayOfSongIds:party.songs}, function(myPartysSongs){
+		songs.getSongsById({arrayOfSongIds:party.songs, partyId:req.params.id}, function(myPartysSongs){
 			res.send(myPartysSongs);
 		});
 	})

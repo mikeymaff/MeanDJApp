@@ -51,9 +51,9 @@ function createDefaultParties() {
 
 			Party.create({name: 'Boys and Girls Club', dj: 'Wolfgang Gartner', location: 'Webster Hall'}, function(err, myParty) {
 				var songs = [
-					new Song({name:"Rift", artist:"Dirty South", _parties:[{partyId: myParty, voteCount:1}]}),
-					new Song({name:"Codec", artist:"Zedd", _parties:[{partyId: myParty, voteCount:1}]}),
-					new Song({name:"I Know The Truth", artist:"Pretty Lights", _parties:[{partyId: myParty, voteCount:1}]}),
+					new Song({name:"Rift", artist:"Dirty South", _parties:[{partyId: myParty, voteCount:10}]}),
+					new Song({name:"Codec", artist:"Zedd", _parties:[{partyId: myParty, voteCount:4}]}),
+					new Song({name:"I Know The Truth", artist:"Pretty Lights", _parties:[{partyId: myParty, voteCount:2}]}),
 					new Song({name:"Latch", artist:"Disclosure", _parties:[{partyId: myParty, voteCount:1}]})
 				]
 

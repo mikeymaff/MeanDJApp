@@ -30,9 +30,6 @@ footer p {
 .margin-bottom-med {
   margin-bottom: 10px;
 }
-.panel-body {
-  font-size: 20px;
-}
 .ng-invalid.ng-dirty {
   border-color: #fa787e;
 }

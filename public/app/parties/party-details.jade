@@ -1,13 +1,16 @@
 .container
 	h1 {{party.name}} at {{party.location}} featuring {{party.dj}}
-		.row
-			.col-md-12
-				//h3(ng-show="course.featured") Featured
-				h3 Published on {{party.published | date}}
-		div(ng-include="'/partials/songs/add-song'")
-		.row
-			.col-md-12
-				.panel.panel-primary
-					.panel-heading Songs
-					.panel-body
-						div(ng-repeat="song in songs") {{song.artist}} - {{song.name}}
+	.row
+		.col-md-12
+			//h3(ng-show="course.featured") Featured
+			h3 Published on {{party.published | date}}
+	div(ng-include="'/partials/songs/add-song'")
+	table.table.table-hover.table-striped.table-condensed
+		thead
+			tr
+				th Votes
+				th Song
+			tbody
+				tr(ng-repeat="song in songs | orderBy: 'voteCount': true")
+					td {{song.voteCount}}
+					td {{song.song.artist}} - {{song.song.name}}
