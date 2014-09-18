@@ -8,22 +8,38 @@ exports.getSongsById = function(req, res) {
 		//console.log(arrayOfSongs)
 
 		//stupid logic to return an array of songs with the appropriate vote counts
+		// var myPartyId = req.partyId;
+		// var arrayOfSongsWithVoteCount = [];
+
+		// for(i=0; i<arrayOfSongs.length; i++) {
+		// 	var arrayOfParties = arrayOfSongs[i]._parties
+
+		// 	var voteCountForThisSong;
+		// 	for(j=0; j<arrayOfParties.length; j++) {
+		// 		if(arrayOfParties[j].partyId == myPartyId) {
+		// 			voteCountForThisSong = arrayOfParties[j].voteCount;
+		// 			break;
+		// 		}
+		// 	}
+		// 	var objectWithVoteCount = {song:arrayOfSongs[i], voteCount:voteCountForThisSong}
+		// 	arrayOfSongsWithVoteCount.push(objectWithVoteCount)
+		// }
+
+		// res(arrayOfSongsWithVoteCount);
+
+
+
+
 		var myPartyId = req.partyId;
 		var arrayOfSongsWithVoteCount = [];
 
-		for(i=0; i<arrayOfSongs.length; i++) {
-			var arrayOfParties = arrayOfSongs[i]._parties
-
-			var voteCountForThisSong;
-			for(j=0; j<arrayOfParties.length; j++) {
-				if(arrayOfParties[j].partyId == myPartyId) {
-					voteCountForThisSong = arrayOfParties[j].voteCount;
-					break;
-				}
-			}
-			var objectWithVoteCount = {song:arrayOfSongs[i], voteCount:voteCountForThisSong}
-			arrayOfSongsWithVoteCount.push(objectWithVoteCount)
-		}
+		_(arrayOfSongs).forEach(function(song){
+			var partyVoteCountObject = _.find(song._parties, function(party){
+				return party.partyId == myPartyId
+			});
+			var voteCountForThisSong = partyVoteCountObject.voteCount;
+			arrayOfSongsWithVoteCount.push({song:song, voteCount:voteCountForThisSong});
+		})
 
 		res(arrayOfSongsWithVoteCount);
 	})
